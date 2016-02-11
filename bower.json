@@ -1,0 +1,20 @@
+{
+  "name": "line-chart",
+  "version": "1.0.0",
+  "homepage": "https://github.com/UniversityofHelsinki/line-chart",
+  "authors": [
+    "Ian Tuomi <ian.tuomi@gofore.com>"
+  ],
+  "description": "Simple line chart using d3",
+  "license": "GPL V2",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "d3": "3.5.*"
+  }
+}

@@ -1,0 +1,40 @@
+.tick > line{
+  stroke: #ddd;
+}
+.domain {
+  display:none;
+}
+.svg-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    padding-bottom: 100%; /* aspect ratio */
+    vertical-align: top;
+    overflow: hidden;
+}
+.svg-content-responsive {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 0;
+}
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+.tooltip {
+  stroke: #000;
+  stroke-width: 1px;
+  fill: rgba(255, 255, 255, 0.6);
+}
+
+.tooltip:before {
+  content: "hello";
+  display: absolute;
+  width:10px;
+  height:10px;
+  left:0px;
+  background-color: yellow;
+}
