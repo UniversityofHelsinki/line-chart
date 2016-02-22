@@ -25,16 +25,15 @@
 }
 
 .tooltip {
-  stroke: #000;
-  stroke-width: 1px;
   fill: rgba(255, 255, 255, 0.6);
 }
 
-.tooltip:before {
-  content: "hello";
-  display: absolute;
-  width:10px;
-  height:10px;
-  left:0px;
-  background-color: yellow;
+.tooltip > rect {
+  stroke: #000;
+  stroke-width: 1px;
+}
+
+.tooltip .arrow {
+  stroke: #999;
+  stroke-width: 2px;
 }
