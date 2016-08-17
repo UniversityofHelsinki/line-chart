@@ -161,13 +161,14 @@ function lineChart(filePath, colors, selector) {
 
     var title_height = height/24;
     svg.append("text")
-      .attr("x", width/2)
+      .attr("x", 0)
       .attr("y", height + margin.bottom/1.25)
-      .style("text-anchor", "middle")
+      .style("text-anchor", "left")
       .style("font-family", "Open Sans")
       .style("font-weight", "600")
-      .style("fill", "#222")
-      .style("font-style", "Italic")
+      .style("font-size", 12)
+      .style("fill", "#979797")
+      .style("text-transform", "uppercase")
       .text(title_text[lang]);
 
     svg.append("g")
@@ -332,7 +333,6 @@ function lineChart(filePath, colors, selector) {
     legend.append("text")
       .classed("legend-name", true)
       .text(function(d) {
-        console.log(d)
         return d.name;
       })
       .attr("text-anchor", "left")
@@ -384,7 +384,7 @@ function lineChart(filePath, colors, selector) {
         focus.style("display", null);
       })
       .on("mouseout", function() {
-        moveTo(2015);
+        moveTo(2016);
         focus.style("display", "none");
       })
       .on("mousemove", mousemove);
@@ -397,7 +397,7 @@ function lineChart(filePath, colors, selector) {
     }
 
     var mouse_min = 2003;
-    var mouse_max = 2015;
+    var mouse_max = 2016;
     var mouse_old = mouse_max;
 
     function mousemove() {
@@ -415,11 +415,11 @@ function lineChart(filePath, colors, selector) {
       }
 
       legend.attr("opacity", function(d) {
-        return defined(d, mouse_old) ? 1 : 0;
+        return defined(d, mouse_old) || defined(d, mouse_old - 1) ? 1 : 0;
       })
       .transition(1000)
       .attr("opacity", function(d) {
-        return defined(d, mouse_i) ? 1 : 0;
+        return defined(d, mouse_i) || defined(d, mouse_old - 1) ? 1 : 0;
       })
 
       tooltip_g
@@ -429,7 +429,13 @@ function lineChart(filePath, colors, selector) {
 
       legend.selectAll("text.legend-number")
         .text(function(d) {
-          return defined(d, mouse_i) ? d.values[mouse_i] : '';
+          if (defined(d, mouse_i)) {
+            return d.values[mouse_i];
+          } else if (defined(d, mouse_i - 1)) {
+            return d.values[mouse_i - 1];
+          } else {
+            return '';
+          }
         });
 
       focusline.attr("x1", x_scale(mouse_old))
@@ -461,7 +467,7 @@ function lineChart(filePath, colors, selector) {
 
       mouse_old = mouse_i;
     }
-    moveTo(2015);
+    moveTo(2016);
 
     function getSmoothInterpolationFromPoint(data) {
 
